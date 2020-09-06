@@ -1,0 +1,76 @@
+Get Studio Ghibli Movies with people in them in JSON
+---
+content: application/json
+tags:
+  - Sudio Ghibli
+
+definitions:
+  movie:
+    type: object
+    properties:
+      "id":
+        type: string
+      "title":
+        type: string
+      "description":
+        type: string
+      "director":
+        type: string
+      "producer":
+        type: string
+      "release_date":
+        type: string
+      "rt_score":
+        type: string
+      "people":
+        type: array
+        items:
+          type: string
+      "species":
+        type: array
+        items:
+          type: string
+      "locations":
+        type: array
+        items:
+          type: string
+      "vehicles":
+        type: array
+        items:
+          type: string
+      "url":
+        type: string
+  movies:
+    type: array
+    items:
+      $ref: "#/definitions/movie"
+
+responses:
+  200:
+    description: A list of all Studio Ghibli movies in the API with the people(characters) in them
+    schema:
+      $ref: "#/definitions/movies"
+    examples:
+      movies:
+        [
+          {
+            "id": "fakemovieid1",
+            "people":
+              [
+                { "id": "personid1", "name": "totoro" },
+                { "id": "personid2", "name": "shishigami" },
+              ],
+          },
+          {
+            "id": "fakemovieid2",
+            "people":
+              [
+                { "id": "personid3", "name": "yuki" },
+                { "id": "personid4", "name": "haru" },
+              ],
+          },
+        ]
+  400:
+    description: An error has happend with Studio Ghibli API and we return an empty list
+    examples:
+      case 1: { "msg": "Error with Studio Ghibli API" }

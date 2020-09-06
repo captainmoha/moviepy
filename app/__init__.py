@@ -5,6 +5,8 @@ from .api.routes import api
 
 from .services.cache import cache
 
+from flasgger import Swagger
+
 
 def create_app():
 
@@ -17,5 +19,8 @@ def create_app():
     # register site & api blueprints
     app.register_blueprint(site)
     app.register_blueprint(api)
+
+    # wrap swagger
+    swagger = Swagger(app)
 
     return app
