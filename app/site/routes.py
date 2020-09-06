@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, render_template, redirect
 
 from app.services import ghibli
 from app.services.cache import cache
@@ -12,3 +12,7 @@ def get_movies():
     movies = ghibli.get_movies_with_people_json()
 
     return render_template('base.html', movies=movies)
+
+@site.route('/')
+def index():
+    return redirect('/movies/')
