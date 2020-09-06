@@ -1,0 +1,41 @@
+<div class="card-deck justify-content-center"">
+    {% for movie in movies %}
+    <div class="col-md-4 mb-2">
+        <div class="card mr-1 h-100">
+            <h4 class="card-header">{{ movie.title }} 
+                <span class="badge badge-warning mr-auto">{{ movie.release_date }}</span>
+            </h4>
+            <div class="card-body" id="accordion">
+                <h5 class="card-title">{{ movie.director }}</h5>
+                <p class="card-text">{{ movie.description }}</p>
+                <div id="accordion">
+                    <ul class="card list-group"> 
+                    <div class="card-header" id="heading{{ loop.index }}">
+                        <button class="collapsed btn btn-info" data-toggle="collapse"
+                        data-target="#collapse{{ loop.index }}" aria-expanded="false"
+                        aria-controls="collapse{{ loop.index }}">People 
+                        <span class="badge badge-secondary">
+                            {{ movie.people | length }}
+                        </span>
+                    </button>
+                    </div>
+                    <div class="collapse" id="collapse{{ loop.index }}"
+                         aria-labelledby="heading{{ loop.index }}" data-parent="#accordion">
+                        <div class="card-body">
+                            {% if movie.people | length > 0 %}
+                            {% for person in movie.people %}
+                                <li class="list-group-item">{{ person.name }} <span class="badge badge-secondary ml-auto">{{ person.gender }}</span></li>
+                            {% endfor %}
+                            {% else %}
+                                <li class="list-group-item"> Not Available</li>
+                            {% endif %}
+                            </div>
+                    </div>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
