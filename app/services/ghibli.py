@@ -22,7 +22,7 @@ def get_people():
 
 
 def add_people_to_movies(films, people):
-    # Ammends films dict with correct people in films
+    # Ammends films dict with correct people in films 
 
     for film in films:
         film['people'] = []
@@ -30,7 +30,7 @@ def add_people_to_movies(films, people):
             person_films = person['films']
             # add person to film if he is in it
             film['people'].extend(
-                [film_in for film_in in person_films if film_in == film['url']])
+                [person for film_in in person_films if film_in == film['url']])
 
     return films
 
