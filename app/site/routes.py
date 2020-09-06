@@ -13,6 +13,7 @@ def get_movies():
 
     return render_template('base.html', movies=movies)
 
+
 @site.route('/')
 def index():
     return redirect('/movies/')
